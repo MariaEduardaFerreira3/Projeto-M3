@@ -1,98 +1,143 @@
-CREATE DATABASE teste;
-USE teste;
+CREATE DATABASE projeto1;
+USE projeto1;
+DROP DATABASE projeto1;
 
-CREATE TABLE company (
-  id int PRIMARY KEY,
-  cnpj char(14),
-  name varchar(50),
-  location varchar(50),
-  stock_id int,
-  supplier_id int
+CREATE TABLE tb_company (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cnpj CHAR(14) NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  location VARCHAR(50),
+  stock_id INT,
+  supplier_id INT
+  -- FOREIGN KEY (stock_id) REFERENCES tb_stock(id),
+  -- FOREIGN KEY (supplier_id) REFERENCES tb_supplier(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_company ADD FOREIGN KEY (stock_id) REFERENCES tb_stock(id);
+ALTER TABLE tb_company ADD FOREIGN KEY (supplier_id) REFERENCES tb_supplier(id);
 
-CREATE TABLE supplier (
-  id int PRIMARY KEY,
-  supplied_product varchar(50),
-  name varchar(50),
-  cnpj char(14),
-  phone int(11)
+-- ADICIONANDO DADOS
+-- SABRINA: Company e Supplier
+INSERT INTO tb_company (cnpj, name, location, stock_id, supplier_id) VALUES('12345678901234', 'GásBrasil', 'Moinhos de Vento, Porto Alegre, RS', 1, 1),('23456789012345', 'GásTech', 'Boa Viagem, Recife, PE', 1, 1),
+('34567890123456', 'EcoGás', 'Savassi, Belo Horizonte, MG', 1, 1),
+('45678901234567', 'GásLíder', 'Itaim Bibi, São Paulo, SP', 1, 1),
+('56789012345678', 'SuprimentoGás', 'Copacabana, Rio de Janeiro, RJ', 1, 1);
+
+
+
+-- CONSULTANDO
+SELECT * FROM tb_company;
+
+CREATE TABLE tb_supplier (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  supplied_product VARCHAR(50),
+  name VARCHAR(50),
+  cnpj CHAR(14),
+  phone INT(11)
 );
+-- ADICIONANDO DADOS
+INSERT INTO tb_supplier(supplied_product, name, cnpj, phone) VALUES('gas', 'sabrna', '12345678913121', '1234567890');
 
-CREATE TABLE stock (
-  id int PRIMARY KEY,
-  company_id int,
-  product_type varchar(50),
-  capacity int,
-  supplier_id int
+-- CONSULTANDO
+SELECT * FROM tb_supplier;
+
+CREATE TABLE tb_stock (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  capacity INT,
+  company_id INT,
+  product_type VARCHAR(50),
+  supplier_id INT
+  -- FOREIGN KEY (company_id) REFERENCES tb_company(id),
+  -- FOREIGN KEY (product_type) REFERENCES tb_product(type),
+  -- FOREIGN KEY (supplier_id) REFERENCES tb_supplier(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_stock ADD FOREIGN KEY (company_id) REFERENCES tb_company(id);
+ALTER TABLE tb_stock ADD FOREIGN KEY (product_type) REFERENCES tb_product(type);
+ALTER TABLE tb_stock ADD FOREIGN KEY (supplier_id) REFERENCES tb_supplier(id);
 
-CREATE TABLE product (
-  id int PRIMARY KEY,
-  name varchar(50),
-  type varchar(50),
-  validity datetime,
-  description varchar(100),
-  stock_product int,
-  transaction_id int
+-- ADICIONANDO DADOS
+INSERT INTO tb_stock (capacity) VALUES('10000');
+
+-- CONSULTANDO
+SELECT * FROM tb_stock;
+
+CREATE TABLE tb_product (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50),
+  type VARCHAR(50),
+  validity DATETIME,
+  description VARCHAR(100),
+  stock_id INT,
+  transaction_id INT
+  -- FOREIGN KEY (stock_id) REFERENCES tb_stock(id),
+  -- FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_product ADD FOREIGN KEY (stock_id) REFERENCES tb_stock(id);
+ALTER TABLE tb_product ADD FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id);
 
-CREATE TABLE client (
-  id int PRIMARY KEY,
-  cpf char(11),
-  name varchar(50),
-  phone int(11),
-  location varchar(50),
-  transaction_id int
+-- ADICIONANDO DADOS
+INSERT INTO tb_product (name, type, validity, desciption) VALUES('', '', '','');
+
+-- CONSULTANDO
+SELECT * FROM tb_product;
+
+CREATE TABLE tb_client (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cpf CHAR(11),
+  name VARCHAR(50),
+  phone INT(11),
+  location VARCHAR(50),
+  transaction_id INT
+  -- FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_client ADD FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id);
 
-CREATE TABLE transaction (
-  id int PRIMARY KEY,
-  value decimal(5,2),
-  date datetime,
-  form_payment varchar(50),
-  quantity_product int,
-  client_ind int,
-  product_id int,
-  delivery_id int
+-- ADICIONANDO DADOS
+INSERT INTO tb_client (cpf, name, phone, location) VALUES('', '', '','');
+
+-- CONSULTANDO
+SELECT * FROM tb_client;
+
+CREATE TABLE tb_transaction (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  value DECIMAL(5,2),
+  date DATETIME,
+  form_payment VARCHAR(50),
+  quantity_product INT,
+  client_id INT,
+  product_id INT,
+  delivery_id INT
+  -- FOREIGN KEY (client_id) REFERENCES tb_client(id),
+  -- FOREIGN KEY (product_id) REFERENCES tb_product(id),
+  -- FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_transaction ADD FOREIGN KEY (client_id) REFERENCES tb_client(id);
+ALTER TABLE tb_transaction ADD FOREIGN KEY (product_id) REFERENCES tb_product(id);
+ALTER TABLE tb_transaction ADD FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id);
 
-CREATE TABLE delivery (
-  id int PRIMARY KEY,
-  status bool,
-  delivery_location varchar(50),
-  delivery_date date,
-  transation_id int
+-- ADICIONANDO DADOS
+INSERT INTO tb_transaction (value, date, form_payment, quantity_product) VALUES('', '', '','');
+
+-- CONSULTANDO
+SELECT * FROM tb_transaction;
+
+CREATE TABLE tb_delivery (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  status BOOL,
+  delivery_location VARCHAR(50),
+  delivery_date DATE,
+  transation_id INT
+  -- FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id)
 );
+-- FOREIGN KEYS
+ALTER TABLE tb_delivery ADD FOREIGN KEY (transaction_id) REFERENCES tb_transaction(id);
 
-ALTER TABLE supplier ADD FOREIGN KEY (id) REFERENCES company (supplier_id);
+-- ADICIONANDO DADOS
+INSERT INTO tb_delivery (status, delivery_location, delivery_date) VALUES('', '', '');
 
-ALTER TABLE product ADD FOREIGN KEY (stock_product) REFERENCES stock (id);
-
-ALTER TABLE stock ADD FOREIGN KEY (company_id) REFERENCES company (id);
-
-ALTER TABLE stock ADD FOREIGN KEY (id) REFERENCES company (stock_id);
-
-ALTER TABLE product ADD FOREIGN KEY (transaction_id) REFERENCES transaction (id);
-
-ALTER TABLE transaction ADD FOREIGN KEY (id) REFERENCES client (transaction_id);
-
-ALTER TABLE delivery ADD FOREIGN KEY (transation_id) REFERENCES transaction (id);
-
-ALTER TABLE delivery ADD FOREIGN KEY (id) REFERENCES transaction (delivery_id);
-
-ALTER TABLE product ADD FOREIGN KEY (id) REFERENCES transaction (product_id);
-
-ALTER TABLE transaction ADD FOREIGN KEY (client_ind) REFERENCES client (id);
-
-
-INSERT INTO company (id, cnpj, name, location, stock_id, supplier_id) VALUES (1, '12345678901234', 'GásBrasil', 'Moinhos de Vento, Porto Alegre, RS', 101, 201); 
-
- INSERT INTO company (id, cnpj, name, location, stock_id, supplier_id) VALUES (2, '23456789012345', 'GásTech', 'Boa Viagem, Recife, PE', 102, 202);
-
- INSERT INTO company (id, cnpj, name, location, stock_id, supplier_id) VALUES (3, '34567890123456', 'EcoGás', 'Savassi, Belo Horizonte, MG', 103, 203); 
-
-INSERT INTO company (id, cnpj, name, location, stock_id, supplier_id) VALUES (4, '45678901234567', 'GásLíder', 'Itaim Bibi, São Paulo, SP', 104, 204);
-
-  INSERT INTO company (id, cnpj, name, location, stock_id, supplier_id) VALUES (5, '56789012345678', 'SuprimentoGás', 'Copacabana, Rio de Janeiro, RJ', 105, 205);
-  
-  SELECT * FROM company;
+-- CONSULTANDO
+SELECT * FROM tb_delivery;
