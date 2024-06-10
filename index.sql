@@ -1,7 +1,7 @@
-CREATE DATABASE projeto1;
-USE projeto1;
-DROP DATABASE projeto1;
-
+CREATE DATABASE projeto;
+USE projeto;
+DROP DATABASE projeto;
+-- dd
 CREATE TABLE tb_company (
   id INT AUTO_INCREMENT PRIMARY KEY,
   cnpj CHAR(14) NOT NULL,
@@ -18,12 +18,7 @@ ALTER TABLE tb_company ADD FOREIGN KEY (supplier_id) REFERENCES tb_supplier(id);
 
 -- ADICIONANDO DADOS
 -- SABRINA: Company e Supplier
-INSERT INTO tb_company (cnpj, name, location, stock_id, supplier_id) VALUES('12345678901234', 'GásBrasil', 'Moinhos de Vento, Porto Alegre, RS', 1, 1),('23456789012345', 'GásTech', 'Boa Viagem, Recife, PE', 1, 1),
-('34567890123456', 'EcoGás', 'Savassi, Belo Horizonte, MG', 1, 1),
-('45678901234567', 'GásLíder', 'Itaim Bibi, São Paulo, SP', 1, 1),
-('56789012345678', 'SuprimentoGás', 'Copacabana, Rio de Janeiro, RJ', 1, 1);
-
-
+INSERT INTO tb_company (cnpj, name, location, stock_id) VALUES('12345678901234', 'GásBrasil', 'Moinhos de Vento, Porto Alegre, RS', '1');
 
 -- CONSULTANDO
 SELECT * FROM tb_company;
@@ -36,7 +31,7 @@ CREATE TABLE tb_supplier (
   phone INT(11)
 );
 -- ADICIONANDO DADOS
-INSERT INTO tb_supplier(supplied_product, name, cnpj, phone) VALUES('gas', 'sabrna', '12345678913121', '1234567890');
+INSERT INTO tb_supplier(supplied_product, name, cnpj, phone) VALUES('', '', '', '');
 
 -- CONSULTANDO
 SELECT * FROM tb_supplier;
