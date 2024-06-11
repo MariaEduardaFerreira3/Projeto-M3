@@ -140,7 +140,25 @@ ALTER TABLE tb_transaction ADD FOREIGN KEY (product_id) REFERENCES tb_product(id
 ALTER TABLE tb_transaction ADD FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id);
 
 -- ADICIONANDO DADOS
-INSERT INTO tb_transaction (value, date, form_payment, quantity_product) VALUES('', '', '','');
+INSERT INTO tb_transaction (value, date, form_payment, quantity_product, client_id, product_id) VALUES
+('30.00', '2024-05-25', 'pix','3', '2','4'),
+('40.00', '2024-05-25', 'boleto','4','5','4'),
+('280.00', '2024-05-25', 'cartão de crédito','4','7','6'),
+('70.00', '2024-05-28', 'cartão de crédito','1','1','6'),
+('200.00', '2024-05-31', 'cartão de débito','2', '3','3'),
+('110.00', '2024-06-02', 'pix','1','6','2'),
+('54.00', '2024-06-02', 'pix','6','4','5'),
+('30.00', '2024-06-02', 'pix','3','2','4'),
+('330.00', '2024-06-02', 'pix','3', '10','2'),
+('90.00', '2024-06-02', 'cartão de débito','10', '8','5'),
+('300.00', '2024-06-03', 'boleto','2', '9','1'),
+('10.00', '2024-06-04', 'cartão de crédito','1','3','4'),
+('70.00', '2024-06-07', 'cartão de débito','1','5','6'),
+('18.00', '2024-06-08', 'pix','2','10','5'),
+('440.00', '2024-06-09', 'boleto','4','5','2'),
+('800.00', '2024-06-09', 'cartão de crédito','8','6','3'),
+('450.00', '2024-06-09', 'cartão de crédito','3','7','1');
+
 
 -- CONSULTANDO
 SELECT * FROM tb_transaction;
