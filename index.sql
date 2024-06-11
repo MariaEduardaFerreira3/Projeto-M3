@@ -142,7 +142,7 @@ ALTER TABLE tb_transaction ADD FOREIGN KEY (delivery_id) REFERENCES tb_delivery(
 -- ADICIONANDO DADOS
 INSERT INTO tb_transaction (value, date, form_payment, quantity_product, client_id, product_id) VALUES
 ('30.00', '2024-05-25', 'pix','3', '2','4'),
-('40.00', '2024-05-25', 'boleto','4','5','4'),
+('40.00', '2024-05-25', 'boleto','4','5','4'), 
 ('280.00', '2024-05-25', 'cartão de crédito','4','7','6'),
 ('70.00', '2024-05-28', 'cartão de crédito','1','1','6'),
 ('200.00', '2024-05-31', 'cartão de débito','2', '3','3'),
@@ -159,22 +159,40 @@ INSERT INTO tb_transaction (value, date, form_payment, quantity_product, client_
 ('800.00', '2024-06-09', 'cartão de crédito','8','6','3'),
 ('450.00', '2024-06-09', 'cartão de crédito','3','7','1');
 
-
 -- CONSULTANDO
 SELECT * FROM tb_transaction;
 
 CREATE TABLE tb_delivery (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  status BOOL,
+  status VARCHAR(20),
   delivery_location VARCHAR(50),
   delivery_date DATE,
   transation_id INT
 );
 -- FOREIGN KEYS
 ALTER TABLE tb_delivery ADD FOREIGN KEY (transation_id) REFERENCES tb_transaction(id);
+ALTER TABLE tb_delivery DROP COLUMN status;
+ALTER TABLE tb_delivery ADD COLUMN status VARCHAR(20);
 
 -- ADICIONANDO DADOS
-INSERT INTO tb_delivery (status, delivery_location, delivery_date) VALUES('', '', '');
+INSERT INTO tb_delivery (status, delivery_location, delivery_date, transation_id) VALUES
+('Pedido entregue', 'Moinhos de Vento, Porto Alegre, RS', '2024-05-25', '1'),
+('Pedido entregue', 'Boa Viagem, Recife, PE', '2024-05-25', '2'),
+('Pedido entregue', 'Savassi, Belo Horizonte, MG', '2024-05-26', '3'),
+('Pedido entregue', 'Copacabana, Rio de Janeiro, RJ', '2024-05-30', '4'),
+('Pedido entregue', 'Itaim Bibi, São Paulo, SP', '2024-05-31', '5'),
+('Pedido em atraso', 'Moinhos de Vento, Porto Alegre, RS', '2024-06-12', '6'),
+('Pedido Entregue', 'Copacabana, Rio de Janeiro, RJ', '2024-06-02', '7'),
+('Pedido entregue', 'Moinhos de Vento, Porto Alegre, RS', '2024-06-02', '8'),
+('Pedido em atraso', 'Boa Viagem, Recife, PE', '2024-06-12', '9'),
+('Pedido entregue', 'Savassi, Belo Horizonte, MG', '2024-06-02', '10'),
+('Pedido enviado', 'Itaim Bibi, São Paulo, SP', '2024-06-23', '11'),
+('Pedido entregue', 'Itaim Bibi, São Paulo, SP', '2024-06-04', '12'),
+('Pedido entregue', 'Boa Viagem, Recife, PE', '2024-06-09', '13'),
+('Pedido cancelado', 'Boa Viagem, Recife, PE', '2024-06-08', '14'),
+('Aguadando pagamento', 'Boa Viagem, Recife, PE', '2024-06-19', '15'),
+('Pedido em atraso', 'Moinhos de Vento, Porto Alegre, RS', '2024-06-09', '16'),
+('Aguardando pagamento', 'Savassi, Belo Horizonte, MG', '2024-06-29', '17');
 
 -- CONSULTANDO
 SELECT * FROM tb_delivery;
