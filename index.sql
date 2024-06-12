@@ -58,10 +58,13 @@ CREATE TABLE tb_transaction (
   client_id INT,
   product_id INT,
   delivery_id INT,
+  company_id int,
   FOREIGN KEY (client_id) REFERENCES tb_client(id),
   FOREIGN KEY (product_id) REFERENCES tb_product(id),
-  FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id)
+  FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id),
+  FOREIGN KEY (company_id) REFERENCES tb_company(id)
 );
+
 
 CREATE TABLE tb_delivery (
   id INT PRIMARY KEY,
@@ -138,26 +141,26 @@ INSERT INTO tb_delivery (id, status, delivery_location, delivery_date) VALUES
 (24,'Entregue', 'Barra de São Miguel, Alagoas, AL', '2024-06-30'),-- lucas
 (25,'Separado', 'Serra, Belo Horizonte, MG', '2024-06-10');-- larissa
 
-INSERT INTO tb_transaction (id,value, date, form_payment, quantity_product, client_id, product_id, delivery_id) VALUES
-(50,300.00, '2024-05-25', 'Pix', 1, 57, 13, 07),-- João P 
-(51,34.00, '2024-05-25', 'Boleto', 2, 87, 23, 08),-- Beatriz
-(52,600.00, '2024-06-09', 'Pix', 5, 39, 83, 09),-- Roberto
-(53,70.00, '2024-05-25', 'Cartão de Crédito', 2, 17, 43, 10),-- Larissa
-(54,150.00, '2024-05-28', 'Cartão de Crédito', 1, 47, 33, 11),-- Ana Clara
-(55,70.00, '2024-05-31', 'Cartão de Débito', 5, 67, 53, 12),-- Maria
-(56,600.00, '2024-06-02', 'Pix', 2, 97, 13, 13),-- Lucas
-(57,450.00, '2024-06-02', 'Pix', 3, 77, 33, 14),-- Gabriel
-(58,300.00, '2024-07-02', 'Pix', 1, 57, 13, 15),-- João P
-(59,51.00, '2024-06-02', 'Pix', 3, 38, 23, 16),-- Felipe
-(60,450.00, '2024-06-09', 'Cartão de Crédito', 3, 39, 83, 17),-- Roberto
-(61,175.00, '2024-06-02', 'Cartão de Débito', 5, 27, 43, 18),-- Rafael
-(62,350.00, '2024-06-03', 'Boleto', 10, 37, 63, 19),-- Mariana
-(63,14.00, '2024-06-04', 'Cartão de Crédito', 1, 67, 53, 20),-- Maria
-(64,17.00, '2024-06-07', 'Cartão de Débito', 1, 87, 23, 21),-- Beatriz
-(65,60.00, '2024-06-08', 'Pix', 3, 38, 73, 22), -- Felipe
-(66,40.00, '2024-07-09', 'Boleto', 2, 87, 73, 23), -- Beatriz
-(67,300.00, '2024-06-28', 'Cartão de Crédito', 1, 97, 13, 24), -- Lucas
-(68,105.00, '2024-06-09', 'Cartão de Crédito', 3, 17, 43, 25); -- Larissa 
+INSERT INTO tb_transaction (id,value, date, form_payment, quantity_product, client_id, product_id, delivery_id,company_id) VALUES
+(50,300.00, '2024-05-25', 'Pix', 1, 57, 13, 07, 1),-- João P 
+(51,34.00, '2024-05-25', 'Boleto', 2, 87, 23, 08, 2),-- Beatriz
+(52,600.00, '2024-06-09', 'Pix', 5, 39, 83, 09, 6),-- Roberto
+(53,70.00, '2024-05-25', 'Cartão de Crédito', 2, 17, 43, 10, 3),-- Larissa
+(54,150.00, '2024-05-28', 'Cartão de Crédito', 1, 47, 33, 11, 4),-- Ana Clara
+(55,70.00, '2024-05-31', 'Cartão de Débito', 5, 67, 53, 12, 5),-- Maria
+(56,600.00, '2024-06-02', 'Pix', 2, 97, 13, 13, 1),-- Lucas
+(57,450.00, '2024-06-02', 'Pix', 3, 77, 33, 14, 4),-- Gabriel
+(58,300.00, '2024-07-02', 'Pix', 1, 57, 13, 15, 1),-- João P
+(59,51.00, '2024-06-02', 'Pix', 3, 38, 23, 16, 2),-- Felipe
+(60,450.00, '2024-06-09', 'Cartão de Crédito', 3, 39, 83, 17, 6),-- Roberto
+(61,175.00, '2024-06-02', 'Cartão de Débito', 5, 27, 43, 18, 3),-- Rafael
+(62,350.00, '2024-06-03', 'Boleto', 10, 37, 63, 19, 5),-- Mariana
+(63,14.00, '2024-06-04', 'Cartão de Crédito', 1, 67, 53, 20, 5),-- Maria
+(64,17.00, '2024-06-07', 'Cartão de Débito', 1, 87, 23, 21, 2),-- Beatriz
+(65,60.00, '2024-06-08', 'Pix', 3, 38, 73, 22, 2), -- Felipe
+(66,40.00, '2024-07-09', 'Boleto', 2, 87, 73, 23, 2), -- Beatriz
+(67,300.00, '2024-06-28', 'Cartão de Crédito', 1, 97, 13, 24,1), -- Lucas
+(68,105.00, '2024-06-09', 'Cartão de Crédito', 3, 17, 43, 25, 3); -- Larissa 
 
 -- CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO
 SELECT * FROM tb_company;
@@ -178,6 +181,14 @@ SELECT * FROM tb_client ORDER BY name ASC;
 -- AMADEU
 SELECT * FROM tb_transaction WHERE form_payment = 'Cartão de Crédito';
 
+
+
+-- Sabrina
+
+SELECT AVG(value) as valor_mediano FROM tb_transaction WHERE company_id = 5;
+SELECT SUM(value) as receita_final FROM tb_transaction WHERE company_id = 1;
+
+SELECT * FROM tb_transaction;
 
 --
 SELECT
