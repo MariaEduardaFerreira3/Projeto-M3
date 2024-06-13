@@ -35,7 +35,8 @@ Projeto desenvolvido com as tecnologias:
 Projeto Final - Programadores do Amanhã - Modulo 03#. Utiliza MySQL e DBdiagram visando a solução de problemas de pequenos empreendedores, que precisam ter um local onde armazenar seus próprios dados e informações.
 
 
-- [Visite o Diagrama Relacional - DBdiagram](https://docs.google.com/spreadsheets/d/1oBz8E35nFRstxcMHrwDYK9El1GsJ7qDtE5vvyEbdbjY/edit?usp=sharing)
+- [Visite a planilha de Gráficos](https://docs.google.com/spreadsheets/d/1oBz8E35nFRstxcMHrwDYK9El1GsJ7qDtE5vvyEbdbjY/edit?usp=sharing)
+- [Visite o Diagrama Relacional - DBdiagram](https://dbdiagram.io/d/Projeto-m3-66644cd49713410b0514eab5)
 
 ## Autores
 
