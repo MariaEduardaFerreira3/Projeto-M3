@@ -71,8 +71,7 @@ CREATE TABLE tb_transaction (
   FOREIGN KEY (delivery_id) REFERENCES tb_delivery(id),
   FOREIGN KEY (company_id) REFERENCES tb_company(id)
 );
-
--- INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS INSERINDO DADOS 
+-- ----------------------------------------------
  INSERT INTO tb_supplier (id, supplied_product, name, cnpj, phone) VALUES 
 (10, 'Gás Industrial', 'GásFórmula', '12345678901234', 8294567890),
 (30, 'Gás de Cozinha', 'GásInfinity', '34567890123456', 9996789012),
@@ -81,10 +80,10 @@ CREATE TABLE tb_transaction (
 (60, 'Leite Bovino', 'Nata Laticínios', '34548769295458', 4998941538);
 
 INSERT INTO tb_stock (id, capacity, updated_at) VALUES
-(15, '500', '2024-05-29 23:44:55'),
-(25, '480', '2024-06-12 14:35:56'),
-(35, '2000', '2024-05-30 12:34:12'),
-(45, '600', '2024-06-04 07:45:01'),
+(15, '500', '2024-06-29 23:44:55'),
+(25, '480', '2024-06-17 14:35:56'),
+(35, '2000', '2024-06-30 12:34:12'),
+(45, '600', '2024-06-23 07:45:01'),
 (55, '1000', '2024-08-12 03:02:23'),
 (65, '1300', '2024-06-14 08:23:14');
  
@@ -97,17 +96,17 @@ INSERT INTO tb_stock (id, capacity, updated_at) VALUES
 (06, '67.854.670/9873-56', 'AQueijaria','Secretário, Petrópolis, RJ','Queijo', 65, 60);
 
 INSERT INTO tb_product (id, name, type_product, validity, quantity_stock, description, price, stock_id) VALUES
-(13, 'Gás', 'Gás Industrial', '2039-02-21', 300, 'Botijão de gás, 45kg, 1 unidade', 300.00, 15),
-(23, 'Água', 'Água Mineral', '2044-10-13', 450, 'Engradado de água sem gás, 300ml, 12 unidades', 17.00, 25),
-(33, 'Gás', 'Gás de Cozinha', '2039-05-31', 330 , 'Botijão de gás, 13kg, 1 unidade', 150.00, 45),
-(43, 'Água', 'Água Mineral', '2026-12-06', 240, 'Galão de água sem gás, 20l, 1 unidade', 35.00, 55),
+(13, 'Gás Industrial', 'Gás', '2039-02-21', 300, 'Botijão de gás, 45kg, 1 unidade', 300.00, 15),
+(23, 'Água Mineral sem Gás', 'Água', '2044-10-13', 450, 'Engradado de água sem gás, 300ml, 12 unidades', 17.00, 25),
+(33, 'Gás de Cozinha', 'Gás', '2039-05-31', 330 , 'Botijão de gás, 13kg, 1 unidade', 150.00, 45),
+(43, 'Galão de Água', 'Água', '2026-12-06', 240, 'Galão de água sem gás, 20l, 1 unidade', 35.00, 55),
 (53, 'Coca-Cola', 'Refrigerante', '2025-01-10', 500, 'Coca-cola retornável, 2l, 1 unidade',8.80, 35),
 (63, 'Brahma', 'Cerveja', '2024-10-20', 300, 'Pack de latinhas, 350ml, 12 unidades',35.00, 35),
 (93, 'Heineken', 'Cerveja', '2024-10-20', 300, 'Heineken Long Neck 330ml, 1 unidades',8.00, 35),
 (94, 'Guaraná Antártica', 'Refrigerante', '2025-01-10', 350, 'Guaraná Antártica 3l, 1 unidades',11.00, 35),
 (95, 'Gatorade Morango', 'Isotônico', '2024-10-20', 150, 'Isotônico Gatorade De Morango, 500ml, 6 unidades',43.00, 35),
 (96, 'Gatorade Limão', 'Isotônico', '2024-10-20', 150, 'Isotônico Gatorade De Limão, 500ml, 6 unidades',43.00, 35),
-(73, 'Água', 'Água com gás', '2026-12-18', 400, 'Engradado de água com gás, 510ml, 12 unidades', 20.00, 25),
+(73, 'Água Mineral com gás', 'Água', '2026-12-18', 400, 'Engradado de água com gás, 510ml, 12 unidades', 20.00, 25),
 (83, 'Parmesão', 'Queijo', '2026-04-18', 250, 'Peça de Queijo Parmesão, 1kg, 1 unidade', 56.00, 65),
 (84, 'Prato', 'Queijo', '2026-04-28', 250, 'Peça de Queijo Prato, 5kg, 1 unidade', 33.00, 65),
 (85, 'Brie', 'Queijo', '2026-05-01', 250, 'Peça de Queijo Brie, 1kg, 1 unidade', 90.00, 65);
@@ -127,97 +126,85 @@ INSERT INTO tb_client (id, cpf, name, phone, location) VALUES
 (29,'88548740723', 'Antônio Lima', '21998756408','Xerém, Duque de Caxias, RJ');
 
 INSERT INTO tb_delivery (id, status, delivery_location, delivery_date) VALUES
-(07,'Entregue', 'Marechal Deodoro, Alagoas, AL', '2024-05-28'),-- joao p
-(08,'Entregue', 'Imbiribeira, Recife, PE', '2024-05-25'),-- beatriz
-(09,'Entregue', 'Ermitage, Teresópolis, RJ', '2024-06-16'),-- roberto
-(10,'Entregue', 'Serra, Belo Horizonte, MG', '2024-05-26'),-- larissa
-(11,'Entregue', 'Botafogo, Rio de Janeiro, RJ', '2024-05-28'),-- ana clara
-(12,'Atrasado', 'Ibirapuera, São Paulo, SP', '2024-05-31'),-- maria
-(13,'Separado', 'Barra de São Miguel, Alagoas, AL', '2024-06-10'),-- lucas
-(14,'Entregue', 'Tijuca, Rio de Janeiro, RJ', '2024-06-02'),-- gabriel
-(15,'Separado', 'Marechal Deodoro, Alagoas, AL', '2024-07-12'),-- joao p
-(16,'Entregue', 'Piedade, Recife, PE', '2024-06-02'),-- felipe
-(17,'Cancelado', 'Ermitage, Teresópolis, RJ', '2024-06-12'),-- roberto
-(18,'Entregue', 'Cruzeiro, Belo Horizonte, MG', '2024-06-04'),-- rafael
-(19,'Entregue', 'Vila Olímpia, São Paulo, SP', '2024-06-03'),-- mariana
-(20,'Cancelado', 'Ibirapuera, São Paulo, SP', '2024-06-08'),-- maria
-(21,'Aguardando Pagamento', 'Imbiribeira, Recife, PE', '2024-06-08'),-- beatriz
-(22,'Atrasado', 'Piedade, Recife, PE', '2024-06-08'),-- felipe
-(23,'Aguardando Pagamento', 'Imbiribeira, Recife, PE', '2024-06-10'),-- beatriz
-(24,'Entregue', 'Barra de São Miguel, Alagoas, AL', '2024-06-30'),-- lucas
-(25,'Separado', 'Serra, Belo Horizonte, MG', '2024-06-10'),-- larissa
-(26,'Aguardando Pagamento', 'Xerém, Duque de Caxias, RJ', '2024-07-16'),-- Antônio
-(27,'Separado', 'Xerém, Duque de Caxias, RJ', '2024-10-03');-- Antônio
+(07,'Entregue', 'Marechal Deodoro, Alagoas, AL', '2024-05-28'),
+(08,'Entregue', 'Imbiribeira, Recife, PE', '2024-05-25'),
+(09,'Entregue', 'Ermitage, Teresópolis, RJ', '2024-06-16'),
+(10,'Entregue', 'Serra, Belo Horizonte, MG', '2024-05-26'),
+(11,'Entregue', 'Botafogo, Rio de Janeiro, RJ', '2024-05-28'),
+(12,'Atrasado', 'Ibirapuera, São Paulo, SP', '2024-05-31'),
+(13,'Separado', 'Barra de São Miguel, Alagoas, AL', '2024-06-10'),
+(14,'Entregue', 'Tijuca, Rio de Janeiro, RJ', '2024-06-02'),
+(15,'Separado', 'Marechal Deodoro, Alagoas, AL', '2024-07-12'),
+(16,'Entregue', 'Piedade, Recife, PE', '2024-06-02'),
+(17,'Cancelado', 'Ermitage, Teresópolis, RJ', '2024-06-12'),
+(18,'Entregue', 'Cruzeiro, Belo Horizonte, MG', '2024-06-04'),
+(19,'Entregue', 'Vila Olímpia, São Paulo, SP', '2024-06-03'),
+(20,'Cancelado', 'Ibirapuera, São Paulo, SP', '2024-06-08'),
+(21,'Aguardando Pagamento', 'Imbiribeira, Recife, PE', '2024-06-08'),
+(22,'Atrasado', 'Piedade, Recife, PE', '2024-06-08'),
+(23,'Aguardando Pagamento', 'Imbiribeira, Recife, PE', '2024-06-10'),
+(24,'Entregue', 'Barra de São Miguel, Alagoas, AL', '2024-06-30'),
+(25,'Separado', 'Serra, Belo Horizonte, MG', '2024-06-10'),
+(26,'Aguardando Pagamento', 'Xerém, Duque de Caxias, RJ', '2024-07-16'),
+(27,'Separado', 'Xerém, Duque de Caxias, RJ', '2024-10-03');
 
 INSERT INTO tb_transaction (id,value, date, form_payment, quantity_product, client_id, product_id, delivery_id, company_id) VALUES
-(50,300.00, '2024-05-25', 'Pix', 1, 57, 13, 07, 1),-- João P 
-(51,34.00, '2024-05-25', 'Boleto', 2, 87, 23, 08, 2),-- Beatriz
-(52,600.00, '2024-06-09', 'Pix', 5, 39, 83, 09, 6),-- Roberto
-(53,70.00, '2024-05-25', 'Cartão de Crédito', 2, 17, 43, 10, 3),-- Larissa
-(54,150.00, '2024-05-28', 'Cartão de Crédito', 1, 47, 33, 11, 4),-- Ana Clara
-(55,70.00, '2024-05-31', 'Cartão de Débito', 5, 67, 53, 12, 5),-- Maria
-(56,600.00, '2024-06-02', 'Pix', 2, 97, 13, 13, 1),-- Lucas
-(57,450.00, '2024-06-02', 'Pix', 3, 77, 33, 14, 4),-- Gabriel
-(58,300.00, '2024-07-02', 'Pix', 1, 57, 13, 15, 1),-- João P
-(59,51.00, '2024-06-02', 'Pix', 3, 38, 23, 16, 2),-- Felipe
-(60,450.00, '2024-06-09', 'Cartão de Crédito', 3, 39, 83, 17, 6),-- Roberto
-(61,175.00, '2024-06-02', 'Cartão de Débito', 5, 27, 43, 18, 3),-- Rafael
-(62,350.00, '2024-06-03', 'Boleto', 10, 37, 63, 19, 5),-- Mariana
-(63,14.00, '2024-06-04', 'Cartão de Crédito', 1, 67, 53, 20, 5),-- Maria
-(64,17.00, '2024-06-07', 'Cartão de Débito', 1, 87, 23, 21, 2),-- Beatriz
-(65,60.00, '2024-06-08', 'Pix', 3, 38, 73, 22, 2), -- Felipe
-(66,40.00, '2024-07-09', 'Boleto', 2, 87, 73, 23, 2), -- Beatriz
-(67,300.00, '2024-06-28', 'Cartão de Crédito', 1, 97, 13, 24,1), -- Lucas
-(68,105.00, '2024-06-09', 'Cartão de Crédito', 3, 17, 43, 25, 3), -- Larissa 
-(88,66.00, '2024-07-10', 'Boleto', 2, 29, 84, 26, 6),-- Antônio
-(90,270.00, '2024-10-05', 'Cartão de Crédito', 3, 29, 85, 27, 6);-- Antônio
--- ADICIONAR COMPRAS DE GUARANÁ, HEINEKEN E ISOTONICOS
-
--- CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO CONSULTANDO
+(50,300.00, '2024-05-25', 'Pix', 1, 57, 13, 07, 1),
+(51,34.00, '2024-05-25', 'Boleto', 2, 87, 23, 08, 2),
+(52,600.00, '2024-06-09', 'Pix', 5, 39, 83, 09, 6),
+(53,70.00, '2024-05-25', 'Cartão de Crédito', 2, 17, 43, 10, 3),
+(54,150.00, '2024-05-28', 'Cartão de Crédito', 1, 47, 33, 11, 4),
+(55,70.00, '2024-05-31', 'Cartão de Débito', 5, 67, 53, 12, 5),
+(56,600.00, '2024-06-02', 'Pix', 2, 97, 13, 13, 1),
+(57,450.00, '2024-06-02', 'Pix', 3, 77, 33, 14, 4),
+(58,300.00, '2024-07-02', 'Pix', 1, 57, 13, 15, 1),
+(59,51.00, '2024-06-02', 'Pix', 3, 38, 23, 16, 2),
+(60,450.00, '2024-06-09', 'Cartão de Crédito', 3, 39, 83, 17, 6),
+(61,175.00, '2024-06-02', 'Cartão de Débito', 5, 27, 43, 18, 3),
+(62,350.00, '2024-06-03', 'Boleto', 10, 37, 63, 19, 5),
+(63,14.00, '2024-06-04', 'Cartão de Crédito', 1, 67, 53, 20, 5),
+(64,17.00, '2024-06-07', 'Cartão de Débito', 1, 87, 23, 21, 2),
+(65,60.00, '2024-06-08', 'Pix', 3, 38, 73, 22, 2), 
+(66,40.00, '2024-07-09', 'Boleto', 2, 87, 73, 23, 2), 
+(67,300.00, '2024-06-28', 'Cartão de Crédito', 1, 97, 13, 24,1),
+(68,105.00, '2024-06-09', 'Cartão de Crédito', 3, 17, 43, 25, 3),
+(88,66.00, '2024-07-10', 'Boleto', 2, 29, 84, 26, 6),
+(90,270.00, '2024-10-05', 'Cartão de Crédito', 3, 29, 85, 27, 6);
+-- ----------------------------------------------
 SELECT * FROM tb_company;
 SELECT * FROM tb_supplier;
 SELECT * FROM tb_stock;
 SELECT * FROM tb_product;
 SELECT * FROM tb_delivery;
 SELECT * FROM tb_transaction;
+
 SELECT * FROM tb_client;
 
--- MARIA
--- estoques com capacidades entre 500 e 1000
+-- Retornadno Estoques com Capacidade Entre 500 e 1000
 SELECT * FROM tb_stock WHERE capacity BETWEEN 500 AND 1000;
--- fornecedor que tem o id entre 15 e 100 e tem o nome de cia das bebidas
+-- Retornadno Fornecedor com o id Entre 15 e 100 e que Possui o Nome de Cia das Bebidas
 SELECT * FROM tb_supplier WHERE id BETWEEN 15 AND 100 AND name = 'Cia das Bebidas';
--- empresas que o nome começa com a letra G
+-- Empresas que o Nome Começa com a Letra G
 SELECT id, name, location FROM tb_company WHERE name LIKE 'G%' ORDER BY location ASC;
-
--- AMADEU
--- todas as compras feitas com cartão de crédito
-SELECT * FROM tb_transaction WHERE form_payment = 'Cartão de Crédito';
--- Quantidade de entrega por estado que termina com a letra J
+-- Todas as Compras Feitas com Cartão de Crédito
+SELECT id, value, date, form_payment,client_id,product_id FROM tb_transaction WHERE form_payment = 'Cartão de Crédito';
+-- Quantidade de Entrega por Estado que a Sigla Termina com a Letra J
 SELECT COUNT(delivery_location) AS entregas_do_estado FROM tb_delivery WHERE delivery_location LIKE '%E';
--- Status de entrega de cada empresa
-SELECT tb_delivery.status, tb_transaction.company_id
-FROM tb_delivery, tb_transaction
-WHERE tb_delivery.id = tb_transaction.delivery_id; 
-
--- Sabrina
--- valor médio das vendas 
-SELECT ROUND(AVG(value)) as valor_mediano FROM tb_transaction WHERE company_id = 6;
--- Somando toda a receita da empresa
-SELECT SUM(value) as receita_final FROM tb_transaction WHERE company_id = 1;
--- Média de preços dos produtos por tipo
-SELECT type_product, ROUND(AVG(price)) AS média_preço
-FROM tb_product GROUP BY type_product
-HAVING AVG(price) < '130';
-
--- Cristhyan
--- quantas vezes o produto id 13 foi vendido
-SELECT id AS transação, value AS preço_de_compra, quantity_product, product_id, form_payment, company_id, client_id FROM tb_transaction WHERE product_id = 13;
--- Quantidade de vendas de cada produto por empresa
+-- Status de Entrega de Cada Empresa
+SELECT tb_delivery.status, tb_transaction.company_id FROM tb_delivery, tb_transaction WHERE tb_delivery.id = tb_transaction.delivery_id; 
+-- Valor Médio das Vendas da Empresa de ID = 2
+SELECT ROUND(AVG(value)) as valor_mediano FROM tb_transaction WHERE company_id = 2;
+-- Somando Toda a Receita da Empresa de ID = 6
+SELECT SUM(value) as receita_final FROM tb_transaction WHERE company_id = 6;
+-- Média de Preços dos Produtos por Tipo
+SELECT type_product, ROUND(AVG(price)) AS média_preço FROM tb_product GROUP BY type_product HAVING AVG(price) < '130';
+-- Quantas Vezes o Produto de ID = 13 foi Vendido
+SELECT id AS transação, value AS preço_de_compra, quantity_product, product_id, client_id FROM tb_transaction WHERE product_id = 13;
+-- Quantidade de Vendas de Cada Produto da Empresa com ID = 6
 SELECT company_id, product_id, quantity_product AS quantidade_de_produtos, value AS valor_da_compra 
-FROM tb_transaction WHERE company_id = 5 GROUP BY company_id, product_id, quantity_product, value ORDER BY company_id ASC;
--- RETORNOU AS ENTREGAS QUE SERÃO ENTREGUES NO MESMO DIA DA COMPRA
-SELECT tb_transaction.company_id, tb_transaction.product_id, tb_transaction.quantity_product, tb_transaction.date AS data_de_compra, tb_delivery.delivery_date AS data_de_entrega, tb_delivery.status
+FROM tb_transaction WHERE company_id = 6 GROUP BY company_id, product_id, quantity_product, value ORDER BY company_id ASC;
+-- Todas as Entregas que podem ser Entregues no mesmo dia da Compra
+SELECT tb_transaction.product_id, tb_transaction.date AS data_de_compra, tb_delivery.delivery_date AS data_de_entrega, tb_delivery.status
 FROM tb_transaction
 INNER JOIN tb_delivery
 ON tb_delivery.delivery_date = tb_transaction.date ORDER BY company_id ASC;
