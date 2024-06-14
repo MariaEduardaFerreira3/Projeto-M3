@@ -38,6 +38,12 @@ Projeto Final - Programadores do Amanhã - Modulo 03#. Utiliza MySQL e DBdiagram
 - [Visite a planilha de Gráficos](https://docs.google.com/spreadsheets/d/1oBz8E35nFRstxcMHrwDYK9El1GsJ7qDtE5vvyEbdbjY/edit?usp=sharing)
 - [Visite o Diagrama Relacional - DBdiagram](https://dbdiagram.io/d/Projeto-m3-66644cd49713410b0514eab5)
 
+## 🎯 Casos de Uso
+
+- Registro de produtos e estoques: O usuário pode registrar a quantidade de produtos em vendidos, disponíveis e em estoque.
+- Precificação dos produtos e número de vendas: O usuário do banco de dados pode guardar os valores dos seus produtos e o número de vendas feitas por mês.
+- Controle de clientes e potenciais clientes: Consultas SQL podem ser usadas para descobrir quais foram os clientes fidelizados pela loja do usuário, além de ser possível observar quais são mais presentes em número de compras.
+
 ## Autores
 
 <table>
